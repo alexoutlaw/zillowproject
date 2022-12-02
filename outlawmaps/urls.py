@@ -16,7 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from django.conf.urls import include
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from outlawmaps import settings
+
 urlpatterns = [
     path('index/', include('listingApp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+#  https://stackoverflow.com/questions/15491727/include-css-and-javascript-in-my-django-template
+admin.autodiscover()
+urlpatterns += staticfiles_urlpatterns()
